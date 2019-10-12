@@ -18,10 +18,10 @@ import java.nio.charset.Charset;
 public class FileUpTest {
 
     public static void main(String[] args) {
-        File file = new File("E:\\download\\2018042000000007-4.pdf");
+        File file = new File("D:\\download\\huge.pdf");
         // http://192.168.8.57:8080/mac.service/fileUpload
         // http://localhost:8080/52receive/receive/fileUpload
-        String remote_url = "http://localhost:8088/springMVC/file/fileUpload";
+        String remote_url = "http://localhost:8080/spring-pro/file/fileUpload.do";
         try {
             FileInputStream fis = new FileInputStream(file);
             System.out.println(file.getName());
