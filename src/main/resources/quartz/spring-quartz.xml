@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 要调用的工作类-1 -->
+	<bean id="testPrint" class="com.zyh.hu.quartz.job.TestPrint"></bean>
+	<!-- 定义调用对象和调用对象的方法 -->	
+	<bean id="testJob1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="durability" value="true" />
+			<property name="jobClass" value = "com.zyh.hu.quartz.MyDetailQuartzs" />	
+				<property name="jobDataAsMap"> 			
+					<map>				
+						<entry key="targetObject" value="testPrint" />
+						<entry key="targetMethod" value="test" />
+					</map>		
+				</property>	
+	</bean>		
+	<!-- 定义触发时间 -->
+	<bean id="testTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
+			<property name="jobDetail" ref="testJob1" />	
+			<property name="cronExpression" value="*/40 * * * * ?" />	
+	</bean>
+	<!-- 要调用的工作类-2 -->
+	<bean id="testfindUserNums" class="com.zyh.hu.quartz.job.TestfindUserNums"></bean>
+	<!-- 定义调用对象和调用对象的方法 -->	
+	<bean id="testJob2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="durability" value="true" />
+			<property name="jobClass" value = "com.zyh.hu.quartz.MyDetailQuartzs" />	
+				<property name="jobDataAsMap"> 			
+					<map>				
+						<entry key="targetObject" value="testfindUserNums" />
+						<entry key="targetMethod" value="findUserNums" />
+					</map>		
+				</property>	
+	</bean>		
+	<!-- 定义触发时间 -->
+	<bean id="testTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
+			<property name="jobDetail" ref="testJob2" />	
+			<property name="cronExpression" value="*/50 * * * * ?" />	
+	</bean>
+	
+	<!-- 线程执行器配置，用于任务注册 -->	
+	<bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+			<property name="corePoolSize" value="10" />	
+			<property name="maxPoolSize" value="100" />		
+			<property name="queueCapacity" value="500" />	
+	</bean>		
+	<!-- 总管理类 -->	
+	<bean id="startQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+			<property name="configLocation" value="classpath:quartz/quartz.properties" />
+			<property name="taskExecutor" ref="executor" />
+			<property name="dataSource" ref="dataSource" />
+			<property name="overwriteExistingJobs" value="true" />	
+			<property name="triggers">		
+				<list>			
+					<ref bean="testTrigger1" />
+					<ref bean="testTrigger2" />
+				</list>		
+			</property>	
+			
+	</bean> 
+
+</beans>
