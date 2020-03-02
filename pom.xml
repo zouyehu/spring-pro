@@ -275,6 +275,14 @@
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
     </dependency>
+    <!-- uuid by time begin -->
+    <dependency>  
+	    <groupId>org.safehaus.jug</groupId>  
+	    <artifactId>jug</artifactId>  
+	    <version>2.0.0</version>  
+	     <classifier>asl</classifier>  
+	</dependency>
+	<!-- uuid by time end -->
   </dependencies>
   <build>
     <finalName>spring-pro</finalName>
