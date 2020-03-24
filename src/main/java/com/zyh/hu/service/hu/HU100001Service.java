@@ -23,6 +23,11 @@ import com.zyh.hu.utils.AesUtil;
 import com.zyh.hu.utils.DateUtil;
 import com.zyh.hu.utils.StringsUtil;
 
+/**
+ * 后台数据接口
+ * @author HU
+ *
+ */
 @SuppressWarnings("rawtypes")
 @Service("HU100001Service")
 public class HU100001Service extends BaseQueryService implements BaseService {

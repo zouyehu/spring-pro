@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.zyh.hu.service.requestxml.SHRequest;
+import com.zyh.hu.service.responsexml.SHResponse;
+import com.zyh.hu.utils.JaxbUtils;
+import com.zyh.hu.utils.StringsUtil;
+
 /**
  * 文件上传接口服务层
- * @author zyh
+ * @author HU
  *
  */
 @Controller
@@ -39,4 +44,17 @@ public class FileUpController {
         return "Success";
     }
 	
+	@RequestMapping(value = "returnRes", method = RequestMethod.POST)
+    @ResponseBody
+	public SHResponse returnRes(@RequestParam("requestMessage")String req){
+		Object obj = null;
+		if (StringsUtil.isNotBlank(req)){
+			System.out.println(req);
+			JaxbUtils jb = new JaxbUtils(SHResponse.class);
+			obj = jb.fromXml(req);
+			System.out.println(obj);
+		}
+		return null;
+		
+	}
 }

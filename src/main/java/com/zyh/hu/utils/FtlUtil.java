@@ -18,7 +18,7 @@ import com.zyh.hu.domin.User;
 /**
  * FTL模板工具类
  *
- * @author Hu
+ * @author HU
  */
 public class FtlUtil {
 

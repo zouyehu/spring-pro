@@ -19,12 +19,12 @@
 
 	<context:component-scan base-package="com.zyh.hu"/>
 
-	<!--增加对 jpa 命名空间的引用-->
+	<!--增加对 JPA 命名空间的引用-->
     <jpa:repositories base-package="com.zyh.hu.repository"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager"/>
                       
-    <!-- JPA实体管理工厂的配置 -->
+    <!-- JPA 实体管理工厂的配置 -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
@@ -38,19 +38,19 @@
         </property>
     </bean>
     
-    <!--指定实现JPA的适配器-->
+    <!--指定实现 JPA 的适配器-->
     <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
     </bean>
     
-    <!-- Jpa 事务配置 -->
+    <!-- JPA 事务配置 -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
     
-     <!-- 定义aop拦截 -->
+     <!-- 定义 AOP 拦截 -->
     <context:load-time-weaver />
     <aop:aspectj-autoproxy />
     <bean class="com.zyh.hu.utils.ApplicationContextUtil">
@@ -58,10 +58,10 @@
         <property name="defaultTransactionManager" ref="transactionManager" />
     </bean>
     
-    <!-- JSR303 Validator定义 -->
+    <!-- JSR303 VALIDATOR 定义 -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
     
-    <!--第一种数据源配置,使用应用服务器Tomcat的conf下的context.xml 中配置数据库连接池-->
+    <!--第一种数据源配置,使用应用服务器TOMCAT的conf下的context.xml 中配置数据库连接池-->
     <!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/webservice" />-->
    
     <!-- 第二种数据源配置，在项目中db.properties 中配置 使用DBCP数据库连接池-->

@@ -20,8 +20,9 @@
 	<!-- 定义触发时间 -->
 	<bean id="testTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
 			<property name="jobDetail" ref="testJob1" />	
-			<property name="cronExpression" value="*/40 * * * * ?" />	
+			<property name="cronExpression" value="0 0/3 * * * ?" />	
 	</bean>
+	
 	<!-- 要调用的工作类-2 -->
 	<bean id="testfindUserNums" class="com.zyh.hu.quartz.job.TestfindUserNums"></bean>
 	<!-- 定义调用对象和调用对象的方法 -->	
@@ -38,7 +39,7 @@
 	<!-- 定义触发时间 -->
 	<bean id="testTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
 			<property name="jobDetail" ref="testJob2" />	
-			<property name="cronExpression" value="*/50 * * * * ?" />	
+			<property name="cronExpression" value="0 0/5 * * * ? " />	
 	</bean>
 	
 	<!-- 线程执行器配置，用于任务注册 -->	
@@ -46,7 +47,8 @@
 			<property name="corePoolSize" value="10" />	
 			<property name="maxPoolSize" value="100" />		
 			<property name="queueCapacity" value="500" />	
-	</bean>		
+	</bean>	
+		
 	<!-- 总管理类 -->	
 	<bean id="startQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 			<property name="configLocation" value="classpath:quartz/quartz.properties" />
@@ -59,7 +61,6 @@
 					<ref bean="testTrigger2" />
 				</list>		
 			</property>	
-			
 	</bean> 
 
 </beans>

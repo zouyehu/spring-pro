@@ -12,7 +12,7 @@ import com.zyh.hu.utils.ApplicationContextUtil;
 
 /**
  * quartz集群批处理任务总管理层
- * @author zyh
+ * @author HU
  *
  */
 public class MyDetailQuartzs extends QuartzJobBean {

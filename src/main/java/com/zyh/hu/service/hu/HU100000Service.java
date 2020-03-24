@@ -51,6 +51,7 @@ public class HU100000Service implements BaseService{
 			baseBean.initStatus(ResponseStatusEnum.RESPONSE_BICHUAN_PARAMES_EMPTOY);
 			return baseBean;
 		}
+		
 		SysUser user = userRepository.findByLoginName(userName);
 		if (null == user) {
 			user = new SysUser();

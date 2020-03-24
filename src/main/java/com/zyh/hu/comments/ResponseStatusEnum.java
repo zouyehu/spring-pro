@@ -38,6 +38,8 @@ public enum ResponseStatusEnum {
 	RESPONSE_TOKEN_IS_ERROR("0010","TOKEN-验证不通过"),
 	
 	RESPONSE_POWER_IS_ERROR("0011","您当前无此权限操作"),
+	
+	RESPONSE_SMS_IS_ERROR("0012","请输入正确的验证码"),
 	;
 	
 	

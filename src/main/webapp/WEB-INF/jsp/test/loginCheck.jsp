@@ -31,8 +31,11 @@ function _change() {
 用户名：<input id="userName" name="userName" type="text">
 密码：<input id="password" name="password" type="password">
 <input type="text" name="validatecode" id="validatecode" placeholder="请输入正确的验证码" maxlength="5">
-<img id="img" alt="点击获取验证码" width="100" height="36" onclick="_change()">
+<img id="img" alt="点击获取验证码" width="100" height="36" onclick="_change()"><br/><br/>
 <input type="submit" value="提交">
 </form>
 </body>
+<script>
+	_change();
+</script>
 </html>

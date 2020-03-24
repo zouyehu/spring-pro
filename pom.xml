@@ -283,8 +283,43 @@
 	     <classifier>asl</classifier>  
 	</dependency>
 	<!-- uuid by time end -->
+	<!-- 引入项目中libs jar包 begin -->
+    <dependency>  
+	    <groupId>com.hu</groupId>  
+	    <artifactId>hutool-all</artifactId>  
+	    <version>5.2.0</version>  
+	    <systemPath>${basedir}/libs/hutool-all-5.2.0.jar</systemPath>
+	    <scope>system</scope>
+	</dependency>
+	<!-- 引入项目中libs jar包 end -->
   </dependencies>
+  
   <build>
     <finalName>spring-pro</finalName>
+    
+	<!-- Jetty 开发热部署设置 begin -->
+    <plugins>
+	    <plugin>
+		<groupId>org.mortbay.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<version>${jetty.version}</version>
+		<configuration>
+			<scanIntervalSeconds>10</scanIntervalSeconds>
+			<systemProperties>
+				<systemProperty>
+					<name>spring.profiles.active</name>
+					<value>development</value>
+				</systemProperty>
+			</systemProperties>
+			<useTestClasspath>true</useTestClasspath>
+			<webAppConfig>
+				<contextPath>/${project.artifactId}</contextPath>
+			</webAppConfig>
+		</configuration>
+		</plugin>
+    </plugins>
+    <!-- Jetty 开发热部署设置 end -->
+    
   </build>
+  
 </project>

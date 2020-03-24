@@ -40,7 +40,7 @@ import com.zyh.hu.utils.DateUtil;
 
 /**
  * 数据访问服务层
- * @author zyh
+ * @author HU
  *
  */
 @Repository("BaseQueryService")

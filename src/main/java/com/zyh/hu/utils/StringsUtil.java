@@ -57,6 +57,8 @@ public class StringsUtil {
 			return false;
 		} else if ("".equals(val.trim())) {
 			return false;
+		}else if ("null".equals(val) || "NULL".equals(val)){
+			return false;
 		}
 		return true;
 	}

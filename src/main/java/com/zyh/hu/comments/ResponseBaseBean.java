@@ -2,6 +2,7 @@ package com.zyh.hu.comments;
 
 import java.io.Serializable;
 
+import com.zyh.hu.comments.exception.SysException;
 import com.zyh.hu.utils.StringsUtil;
 /**
  * 系统返回参数定义

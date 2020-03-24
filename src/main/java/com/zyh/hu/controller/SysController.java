@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.zyh.hu.comments.ResponseBaseBean;
 import com.zyh.hu.comments.ResponseStatusEnum;
-import com.zyh.hu.comments.SysException;
+import com.zyh.hu.comments.exception.SysException;
 import com.zyh.hu.entity.SysUser;
 import com.zyh.hu.repository.UserRepository;
 import com.zyh.hu.service.SysErrorLogSystemService;
@@ -50,11 +50,13 @@ public class SysController {
 
 	@Value("${SYS.KEY}")
 	private String key;
+	
 	@Value("${SYS.SECRETKEY}")
 	private String secretKey;
 	
 	@Autowired
 	private SysErrorLogSystemService sysErrorLogSystemService;
+	
 	@Autowired
 	private UserRepository userRepository;
 

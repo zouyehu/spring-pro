@@ -19,6 +19,12 @@ public interface UserRepository extends BaseRepository<SysUser, Long>{
 	 * @param loginName
 	 * @return
 	 */
+	public SysUser findById(int id);
+	/**
+	 * 根据登录名得到 user对象
+	 * @param loginName
+	 * @return
+	 */
 	public SysUser findByLoginName(String loginName);
 	
 	/**
