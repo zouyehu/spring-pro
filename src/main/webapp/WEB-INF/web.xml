@@ -64,14 +64,14 @@
 	</filter-mapping>
 
 	<!-- 解决反射型XSS漏洞攻击  -->
-	<filter>
-		<filter-name>XssEscape</filter-name>
-		<filter-class>com.zyh.hu.filter.XssFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>XssEscape</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>XssEscape</filter-name> -->
+<!-- 		<filter-class>com.zyh.hu.filter.XssFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>XssEscape</filter-name> -->
+<!-- 		<url-pattern>*.do</url-pattern> -->
+<!-- 	</filter-mapping> -->
 
 	<!-- 加载图形验证码  -->
 	<servlet>

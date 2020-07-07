@@ -40,12 +40,22 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<!-- 拦截器结束 -->
-	
+	<!--加载属性配置文件-->
+<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 	<property name="fileEncoding" value="UTF-8" /> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
+<!-- 				<value>classpath:properties/baseconfig.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
 	<!--对象 JSON 转换器-->
     <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
-                <value>application/json;charset=UTF-8</value>
+                <value>text/html;charset=utf-8</value>
+                <value>application/json;charset=utf-8</value>
             </list>
         </property>
     </bean>

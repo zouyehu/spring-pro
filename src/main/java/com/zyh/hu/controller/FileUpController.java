@@ -1,7 +1,17 @@
 package com.zyh.hu.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,15 +56,16 @@ public class FileUpController {
 	
 	@RequestMapping(value = "returnRes", method = RequestMethod.POST)
     @ResponseBody
-	public SHResponse returnRes(@RequestParam("requestMessage")String req){
-		Object obj = null;
-		if (StringsUtil.isNotBlank(req)){
-			System.out.println(req);
-			JaxbUtils jb = new JaxbUtils(SHResponse.class);
-			obj = jb.fromXml(req);
-			System.out.println(obj);
-		}
-		return null;
+	public SHResponse returnRes(@RequestParam("requestMessage") String req){
+		SHResponse response = null;
+		if (!StringsUtil.isNull(req)) {
+			 JaxbUtils jb = new JaxbUtils(SHResponse.class);
+			 response = jb.fromXml(req);
+			 response.getShHeadResponse().sethutranstate("S");
+		 }
+		   
+		return response;
 		
 	}
+	
 }

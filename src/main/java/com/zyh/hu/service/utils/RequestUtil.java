@@ -24,9 +24,9 @@ public class RequestUtil {
 	private HTTPSend hTTPSendImpl;
 
 	//常量定义
-	private final static String CHANNELID = "huGE";
+	private final static String CHANNELID = "HUGE";
 	private final static String huREQSYS = "123";
-	private final static String huTRANCODE = "hu_XUE_520";
+	private final static String huTRANCODE = "HU_XUE_520";
 
 	/**
 	 * 封装请求报文通用接口
@@ -78,7 +78,7 @@ public class RequestUtil {
 	 * @return
 	 */
 	public SHResponse getCPI0001(Map<String, Object> map) {
-		SysUser user = (SysUser) map.get("userId");
+		SysUser user = (SysUser) map.get("user");
 		String trxCode = (String) map.get("trxCode");
 		String transCode = (String) map.get("transCode");
 		String hubacctno = (String) map.get("hubacctno"); 						// 子账号

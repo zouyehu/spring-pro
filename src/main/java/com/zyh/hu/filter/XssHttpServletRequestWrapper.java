@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * 解决反射型XSS漏洞攻击
+ * 注:慎用
  * @author HU
  *
  */

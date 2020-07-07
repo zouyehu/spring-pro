@@ -2,6 +2,7 @@ package com.zyh.hu.interceptor;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,10 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zyh.hu.comments.ResponseBaseBean;
+import com.zyh.hu.repository.AppProperRepository;
 import com.zyh.hu.service.JsonConvertProvider;
 
 
@@ -25,17 +29,44 @@ import com.zyh.hu.service.JsonConvertProvider;
 public class AccessTokenInterceptor implements HandlerInterceptor{
 
 private static final Logger logger = LoggerFactory.getLogger(AccessTokenInterceptor.class);
+private AntPathMatcher matcher = new AntPathMatcher();
+
+	@Value("#{'${REQUEST.HU.CHECKTRANSCODE}'.split('#')}")
+	private List<String> checkTransCodes;//需要拦截的接口号
 	
+	@Value("#{'${REQUEST.HU.CHECKPATTERURLS}'.split('#')}")
+	private List<String> checkPatterUrls;//需要拦截的URL
+
 	@Autowired
 	private JsonConvertProvider jsonConvertProvider;
+	
+	@Autowired
+	private AppProperRepository appProperRepository;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String uri = request.getRequestURI();
-		if(uri.contains("sysAccess/")){
-    		return true;
-    	}
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ request.getContextPath();
+		String interSwitch = appProperRepository.getValueByKey("INTER.SWITCH", "CMPS");//1-开,0-关
+		String reqUri = request.getRequestURI();
+		if ("1".equals(interSwitch)) {
+			for (String checkUrl:checkPatterUrls) {
+				if (matcher.match(checkUrl, reqUri)) {
+					response.sendRedirect(basePath+"/sysAccess/userLogin.do");
+		            return false;
+				}
+			}
+			
+			String transCode = request.getParameter("transCode");
+			for (String code:checkTransCodes) {
+				if (matcher.match(code, transCode)) {
+					response.sendRedirect(basePath+"/sysAccess/userLogin.do");
+		            return false;
+				}
+			}
+		} else {
+			return true;
+		}
 		
 		String appToken = request.getHeader("appToken");
 		logger.info("---前端请求传过来的加密token为:" + appToken);
