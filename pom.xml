@@ -12,6 +12,7 @@
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-version>4.2.5.RELEASE</spring-version>
     <hibernate-version>4.2.1.Final</hibernate-version>
+    <jetty.version>9.3.12.v20160915</jetty.version>
   </properties>
 
 	<profiles>

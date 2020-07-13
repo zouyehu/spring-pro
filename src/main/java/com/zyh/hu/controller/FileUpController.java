@@ -51,7 +51,7 @@ public class FileUpController {
                 e.printStackTrace();
             }
         }
-        return "Success";
+        return "SUCCESS";
     }
 	
 	@RequestMapping(value = "returnRes", method = RequestMethod.POST)

@@ -75,4 +75,10 @@
         </bean>
     </beans>
 	
+	<beans profile="production">
+        <util:properties id="pro" location="classpath:spring/jpa/production.properties" />
+        <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+            <property name="jndiName" value="#{pro['jndi-name']}" />
+        </bean>
+    </beans>
 </beans>

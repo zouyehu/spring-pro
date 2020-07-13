@@ -377,13 +377,15 @@ public class HttpClientUtil {
 		logger.info("---上传电子保单保单号：{}", policy);
 		 try {
 			FileInputStream fis = new FileInputStream(file);
-			logger.info("---上传文件初始名称:{}", file.getName());
+			String fileName = file.getName();//文件名
+			logger.info("---上传文件初始名称:{}", fileName);
+			String prefix = fileName.substring(fileName.lastIndexOf("."));//获取文件后缀名
 			MultipartFile multi = new MockMultipartFile(policy, fis);
 			logger.info("---上传保单名称：{}", multi.getName());
 			CloseableHttpClient httpClient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(url);
 			MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-		    builder.addBinaryBody("policy", multi.getInputStream(),ContentType.MULTIPART_FORM_DATA,policy);
+		    builder.addBinaryBody("policy", multi.getInputStream(),ContentType.MULTIPART_FORM_DATA,policy+prefix);
 			HttpEntity entity = builder.build();
 			httpPost.setEntity(entity);
 			 HttpResponse response = httpClient.execute(httpPost);// 执行提交

@@ -1,5 +1,8 @@
 package com.zyh.hu.utils;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 public class NumberUtils {
 
 	public final static String bytesToHexString(byte[] bytes) {
@@ -37,4 +40,21 @@ public class NumberUtils {
 		return (byte) "0123456789ABCDEF".indexOf(c);
 	}
 
+	/**
+	 * 随机生成安全6位数
+	 * @return
+	 */
+	public static String randomCode(String userId) {
+        StringBuilder str = new StringBuilder();
+        SecureRandom random = new SecureRandom();
+        str.append(userId);
+        for (int i = 0; i < 6; i++) {
+            str.append(random.nextInt(10));
+        }
+        return str.toString();
+    }
+
+	public static void main(String[] args) {
+		System.out.println(NumberUtils.randomCode("2222222"));
+	}
 }

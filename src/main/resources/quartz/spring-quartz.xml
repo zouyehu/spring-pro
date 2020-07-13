@@ -20,7 +20,7 @@
 	<!-- 定义触发时间 -->
 	<bean id="testTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
 			<property name="jobDetail" ref="testJob1" />	
-			<property name="cronExpression" value="0 0/3 * * * ?" />	
+			<property name="cronExpression" value="0 0/10 * * * ?" />	
 	</bean>
 	
 	<!-- 要调用的工作类-2 -->
@@ -39,7 +39,7 @@
 	<!-- 定义触发时间 -->
 	<bean id="testTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">	
 			<property name="jobDetail" ref="testJob2" />	
-			<property name="cronExpression" value="0 0/5 * * * ? " />	
+			<property name="cronExpression" value="0 0/15 * * * ? " />	
 	</bean>
 	
 	<!-- 线程执行器配置，用于任务注册 -->	

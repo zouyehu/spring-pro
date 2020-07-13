@@ -27,6 +27,10 @@ public class StringsUtil {
 		return null == s || "".equals(s) || "null".equals(s) || "NULL".equals(s);
 	}
 
+	public static boolean isNotNull(String s) {
+		return !isNull(s);
+	}
+	
 	public static int validLength(String val) {
 		// 去白
 		val = val.trim();

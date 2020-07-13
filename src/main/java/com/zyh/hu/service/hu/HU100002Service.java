@@ -74,7 +74,7 @@ public class HU100002Service implements BaseService{
 				return baseBean;
 			}
 			SysUser user = userRepository.findById(Integer.valueOf(userId));
-			 if(null == user) {
+			if (null == user) {
 				baseBean.initStatus(ResponseStatusEnum.RESPONSE_USER_ISNOT_FIND);
 				return baseBean;
 			}
