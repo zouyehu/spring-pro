@@ -13,6 +13,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -25,6 +27,17 @@ import com.alibaba.fastjson.JSONObject;
  * @date 2019-02-20
  */
 public class JsonUtil {
+
+	public static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
+	private static String dateFormat = null;
+	
+	public static String getDateFormat() {
+		return dateFormat;
+	}
+
+	public static void setDateFormat(String dateFormat) {
+		JsonUtil.dateFormat = dateFormat;
+	}
 
 	/**
 	 * JSON 转换 Object
@@ -40,8 +53,9 @@ public class JsonUtil {
 			throws JsonParseException, JsonMappingException, IOException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		mapper.setDateFormat(dateFormat);
+		if (StringsUtil.isNotNull(getDateFormat())) {
+			mapper.setDateFormat(new SimpleDateFormat(dateFormat));
+		}
 
 		if (StringsUtil.isNotBlank(strJson)) {
 			return mapper.readValue(strJson, cls);
@@ -58,9 +72,9 @@ public class JsonUtil {
 	 */
 	public static String objectToJsonString(Object object) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		mapper.setDateFormat(dateFormat);
+		if (StringsUtil.isNotNull(getDateFormat())) {
+			mapper.setDateFormat(new SimpleDateFormat(dateFormat));
+		}
 		return mapper.writeValueAsString(object);
 	}
 

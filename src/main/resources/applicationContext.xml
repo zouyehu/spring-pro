@@ -14,16 +14,19 @@
 	<import resource="classpath:spring/jpa/springdata-jpa.xml" />
 	<import resource="classpath:properties/properties.xml" />
 	<import resource="classpath:quartz/spring-quartz.xml" />
+<!-- 	<import resource="classpath:redis/spring-redis.xml" /> -->
+
     <!-- Spring上传文件时，需要配置MultipartResolver处理器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     	<property name="maxUploadSize" value="10000000" />
     </bean>
+    
 	<!--加载属性配置文件-->
 	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	<property name="fileEncoding" value="UTF-8" />
 		<property name="locations">
 			<list>
-				<value>classpath*:properties/mysql.properties</value>
+				<value>classpath*:redis/redis.properties</value>
 			</list>
 		</property>
 	</bean> -->
